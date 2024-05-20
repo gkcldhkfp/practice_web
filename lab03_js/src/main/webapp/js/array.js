@@ -29,7 +29,7 @@ for (let val of arr){
 }
 output.innerHTML += html + '<br/>'
 
-// for-in 문장: 배여르이 인덱스들을 iteration(순회).
+// for-in 문장: 배열의 인덱스들을 iteration(순회).
 html = '';
 for (let idx in arr) {
     html += `${idx} : ${arr[idx]}, `;

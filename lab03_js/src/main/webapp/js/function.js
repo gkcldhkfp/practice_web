@@ -29,7 +29,7 @@ result = add(1, 2, 3); // 선언된 파라미터보다 더 많은 아규먼트�
 console.log(`result = ${result}`);
 
 result = add(1); // 선언된 파라미터보다 적은 개수의 아규먼트를 전달한 경우.
-console.log(`result = ${result}`);
+console.log(`result = ${result}`); //-> 1 + undefined = NaN
 // undefined: 초기화되지 않은 변수(값이 할당되지 않은 변수).
 // NaN(Not a Number)
 

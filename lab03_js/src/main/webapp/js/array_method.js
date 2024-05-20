@@ -76,4 +76,33 @@ console.log(result);
 
 numbers.forEach((x) => console.log(x));
 
+// 배열 numbers의 모든 원소들의 합계
+let sum = 0;
+for (let value of numbers) {
+    sum += value; // sum = sum + value
+}
+console.log(`sum = ${sum}`);
 
+sum = numbers.reduce((acc, cur) => acc + cur, 0);
+// reduce(callback, initialValue)
+console.log(`sum = ${sum}`);
+
+// numbers의 모든 원소들의 곱: 1 x 2 x ... x 5 x 6
+result = 1;
+for (let value of numbers) {
+    result = result * value; // sum *= value
+}
+console.log(`result = ${result}`);
+
+result = numbers.reduce((acc, cur) => acc * cur, 1);
+console.log(`result = ${result}`);
+
+// numbers의 원소들 중에서 짝수들의 합: 2 + 4 + 6
+result = numbers.filter((x) => x % 2 === 0).reduce((x, y) => x + y, 0);
+console.log(`짝수 합 = ${result}`);
+// numbers의 원소들의 제곱의 합: 1 + 4 + 9 + 16 + 25 + 36
+result = numbers.map((x) => (x * x)).reduce((x, y) => x + y, 0);
+console.log(`제곱 합 = ${result}`);
+// numbers의 원소들 중에서 짝수들의 제곱의 합: 4 + 16 + 36
+result = numbers.filter((x) => x % 2 === 0).map((x) => x * x).reduce((x, y) => x + y, 0);
+console.log(`짝수 제곱 합 = ${result}`);
