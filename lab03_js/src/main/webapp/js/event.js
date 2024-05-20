@@ -30,7 +30,7 @@ itemInput2.addEventListener('keydown', function(e) {
 const username = document.querySelector('input#username');
 username.addEventListener('change', (e) => {
     const output = document.querySelector('div#output');
-    output.innerHTML = e.target.value;
+    output.innerHTML = username.value;
 });
 // TODO: img#bulb 요소에 'mouseenter' 이벤트 리스너를 등록:
 // img의 src를 'images/bulb_on.gif'로 변경.
