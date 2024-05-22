@@ -1,4 +1,4 @@
-<%@page import="java.time.LocalDateTime"%>
+<%@ page import="java.time.LocalDateTime"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,6 +26,18 @@
             </li>
             <li>
                 <a href="ex4">리다이렉트(redirect)</a>
+            </li>
+            <li>
+                <a href="intro.jsp">JSP 소개</a>
+            </li>
+            <li>
+                <a href="main.jsp">include 지시문</a>
+            </li>
+            <li>
+                <a href="scriptlet.jsp">스크립트릿(scriptlet)</a>
+            </li>
+            <li>
+                <a href="form.jsp">폼 양식</a>
             </li>
         </ul>
     </main>
