@@ -27,13 +27,9 @@
         %>
         <h2>스크립트릿, 식 사용한 리스트</h2>
         <ul>
-            <%
-            for (String s : sns) {
-            %>
+            <% for (String s : sns) { %>
             <li><%=s%></li>
-            <%
-            }
-            %>
+            <% } %>
         </ul>
 
         <h2>JSTL, EL을 사용한 리스트</h2>

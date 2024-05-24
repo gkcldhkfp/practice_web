@@ -16,7 +16,7 @@ public class FirstServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public FirstServlet() {
-        System.out.println("생성자");
+        System.out.println("FirstServlet 생성...");
     }
 
 	/**
@@ -29,7 +29,7 @@ public class FirstServlet extends HttpServlet {
     // 파라미터 response: 서버가 클라이언트로 보낼 응답의 정보, 기능들을 갖는 객체.
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	System.out.println("FirstServler::doGet() 호출");
+    	System.out.println("FirstServlet::doGet() 호출");
     	
     	response.setContentType("text/html; charset=UTF-8");
     	
