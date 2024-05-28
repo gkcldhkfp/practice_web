@@ -30,15 +30,46 @@ public class PostTest {
 		log.debug("p = {}", p);
 	}
 	
-	@Test
-	public void testPostDao() {
+	// @Test
+	public void testSelect() {
 		Assertions.assertNotNull(dao); // PostDao 타입 객체가 null이 아니면 단위 테스트 성공.
 		log.debug("dao = {}", dao);
 		
 		List<Post> result = dao.select();
-		Assertions.assertNull(result);
-		
-		
+		Assertions.assertEquals(3, result.size());
+		for(Post p : result) {
+			log.debug(p.toString());
+		}
 	}
 
+	//@Test
+	public void testInsert() {
+		// PostDao.insert 메서드 단위 테스트
+		Post post = Post.builder().title("www").content("www test").author("ollo").build();
+		int result = dao.insert(post); // PostDao의 insert 메서드 호출.
+		Assertions.assertEquals(1, result);
+		//-> insert 메서드의 리턴 값(삽입된 행의 개수)가 1이면 단위 테스트 성공.
+	}
+	
+	//@Test
+	public void testDelete() {
+		// PostDao.delete 메서드 단위 테스트
+		int result = dao.delete(4);
+		Assertions.assertEquals(1, result);
+		
+		result = dao.delete(10);
+		Assertions.assertEquals(0, result);
+	}
+	
+	@Test
+	public void testSelectById() {
+		// PostDao.select(int) 메서드 단위 테스트
+		Post result = dao.select(2);
+		Assertions.assertNotNull(result);
+		log.debug(result.toString());
+		
+		result = dao.select(0);
+		Assertions.assertNull(result);
+	}
+	
 }
