@@ -16,14 +16,37 @@ public enum PostService {
 	
 	private static final Logger log = LoggerFactory.getLogger(PostService.class);
 	
-	// Persistence(Repository) 계청의 기능(메서드)들을 사용하기 위해서.
+	// Persistence(Repository) 계층의 기능(메서드)들을 사용하기 위해서.
 	private final PostDao postDao = PostDao.INSTANCE;
 	
 	
 	public List<Post> read() {
-		return postDao.select();
+		log.debug("read()");
+		
+		List<Post> list = postDao.select();
+		log.debug("list size = {}", list.size());
+		
+		return list;
 	}
 	
+	public int create(Post post) {
+		log.debug("create(post={})", post);
+		
+		// Repository 계층의 메서드를 사용해서 DB 테이블에 행을 삽입(insert)
+		int result = postDao.insert(post);
+		log.debug("insert result = {}", result);
+		
+		return result; // insert된 행의 개수를 리턴.
+	}
 	
+	public Post read(int id) {
+		log.debug("read(id={})", id);
+		
+		// 영속성 계층의 메서드를 호출해서 DB 테이블에서 id로 검색하는 SQL을 실행.
+		Post post = postDao.select(id);
+		log.debug("{}",post);
+		
+		return post; // 컨트롤러에게 검색한 Post 객체를 리턴.
+	}
 	
 }

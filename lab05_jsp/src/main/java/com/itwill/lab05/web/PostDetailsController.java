@@ -1,7 +1,6 @@
 package com.itwill.lab05.web;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,23 +14,27 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "postListController", urlPatterns = {"/post/list"})
-public class PostListController extends HttpServlet {
+@WebServlet(name = "postDetailsController", urlPatterns = {"/post/details"})
+public class PostDetailsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = LoggerFactory.getLogger(PostListController.class);
-	
-	// Service(Business) 계층의 기능(메서드)들을 사용하기 위해서.
+	private static final Logger log = LoggerFactory.getLogger(PostDetailsController.class);
 	private final PostService postService = PostService.INSTANCE;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		log.debug("doGet()");
-		
-		// DB posts 테이블에서 전체 검색을 하고, 그 결과를 뷰에 전달
-		List<Post> list = postService.read();
-		req.setAttribute("posts", list);
-		
-		req.getRequestDispatcher("/WEB-INF/views/post/list.jsp").forward(req, resp);
-	}
 	
+		// 질의 문자열(query String)에 포함된 요청 파라미터 id 값을 읽음.
+		int id = Integer.parseInt(req.getParameter("id"));
+		log.debug("id={}", id);
+		
+		// 서비스 계층의 메서드를 호출해서 해당 id의 Post 정보를 DB에서 읽음.
+		Post post = postService.read(id);
+		
+		// 검색된 Post 객체를 뷰(JSP)에게 전달.
+		req.setAttribute("post", post);
+		
+		req.getRequestDispatcher("/WEB-INF/views/post/details.jsp").forward(req, resp);
+		
+	}
 }

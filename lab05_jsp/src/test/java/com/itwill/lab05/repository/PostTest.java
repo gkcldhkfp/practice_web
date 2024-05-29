@@ -51,17 +51,17 @@ public class PostTest {
 		//-> insert 메서드의 리턴 값(삽입된 행의 개수)가 1이면 단위 테스트 성공.
 	}
 	
-	//@Test
+	@Test
 	public void testDelete() {
 		// PostDao.delete 메서드 단위 테스트
-		int result = dao.delete(4);
+		int result = dao.delete(10);
 		Assertions.assertEquals(1, result);
 		
-		result = dao.delete(10);
-		Assertions.assertEquals(0, result);
+//		result = dao.delete(10);
+//		Assertions.assertEquals(0, result);
 	}
 	
-	@Test
+	//@Test
 	public void testSelectById() {
 		// PostDao.select(int) 메서드 단위 테스트
 		Post result = dao.select(2);
