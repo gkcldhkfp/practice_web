@@ -34,7 +34,7 @@ public class CharacterEncodingFilter extends HttpFilter {
 			throws IOException, ServletException {
 		// 요청(request) 객체의 문자열 인코딩 타입을 (UTF-8로) 설정: 
 		request.setCharacterEncoding(encoding);
-		
+		log.debug("ip = {}",request.getRemoteAddr());
 		// 다음 필터 체인을 진행(-> 서블릿(doGet, doPost) 호출)
 		chain.doFilter(request, response);
 	}
