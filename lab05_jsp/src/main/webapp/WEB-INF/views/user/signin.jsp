@@ -9,36 +9,33 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
     crossorigin="anonymous">
-    <title>SignUp</title>
+    <title>Lab 5</title>
 </head>
 <body>
     <div class="container-fluid">
-        <%@ include file="../fragments/header.jspf" %>
         <main>
-            <div class="mt-2 card">
+            <div class="card mt-2">
                 <div class="card-header">
-                    <h2>회원 가입</h2>
+                    <h2>로그인</h2>
                 </div>
                 <div class="card-body">
-                    <c:url var="signup" value="/user/signup"/>
-                    <form method="post" action="${signup}">
+                    <c:url var="signInPage" value="/user/signin" />
+                    <form method="post" action="${signInPage}">
                         <div class="mt-2">
-                            <input class="form-control" type="text" name="userid" placeholder="id" required autofocus />
+                            <input type="text" name="userid" placeholder="아이디" class="form-control" required autofocus/> 
                         </div>
                         <div class="mt-2">
-                            <input class="form-control" type="password" name="password" placeholder="password" required  />
+                            <input type="password" name="password" placeholder="비밀번호" class="form-control"  required /> 
                         </div>
                         <div class="mt-2">
-                            <input class="form-control" type="text" name="email" placeholder="email" required />
-                        </div>
-                        <div class="mt-2">
-                            <input class="form-control btn btn-outline-success" type="submit" value="완료" />
+                            <input type="submit" class="form-control btn btn-outline-success"  value="로그인" /> 
                         </div>
                     </form>
                 </div>
-            </div>
+            </div>        
         </main>
     </div>
+    
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 

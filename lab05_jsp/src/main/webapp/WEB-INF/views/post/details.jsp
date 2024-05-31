@@ -49,12 +49,14 @@
                         </div>
                     </form>
                 </div>
+                <c:if test="${signedInUser eq post.author}">
                 <div class="card-footer">
                     <c:url var="postModifyPage" value="/post/modify" >
                         <c:param name="id" value="${post.id}" />
                     </c:url>
                     <a class ="btn btn-outline-primary" href="${postModifyPage}">수정하기</a>
-                </div>  
+                </div> 
+                </c:if> 
             </div>
         </main>
     </div>

@@ -1,6 +1,5 @@
 package com.itwill.lab05.repository;
 
-import java.time.LocalDateTime;
 
 // Model. users 테이블.
 public class User {
@@ -66,7 +65,7 @@ public class User {
 				+ points + "]";
 	}
 	
-	// TODO: builder 패턴
+	// builder 패턴
 	public static UserBuilder builder() {
 		return new UserBuilder();
 	}

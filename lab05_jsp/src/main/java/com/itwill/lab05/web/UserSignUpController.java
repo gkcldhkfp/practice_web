@@ -43,9 +43,8 @@ public class UserSignUpController extends HttpServlet {
 		
 		userService.signup(user);
 		
-		String url = req.getContextPath();
+		String url = req.getContextPath() + "/";
 		resp.sendRedirect(url);
-		log.debug(url);
 	}
 	
 }
