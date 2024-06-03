@@ -41,7 +41,7 @@
                         </div>
                     </form>
                 </div>
-                <c:if test="${post.author eq signedInUser}">
+                <c:if test="${post.author eq signedInUser or signedInUser eq 'admin'}">
                     <div class="card-footer">
                         <button id="btnDelete" class="btn btn-outline-danger" >삭제</button>
                         <button id="btnUpdate" class="btn btn-outline-success">업데이트</button>

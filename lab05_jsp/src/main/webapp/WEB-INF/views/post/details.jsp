@@ -49,7 +49,7 @@
                         </div>
                     </form>
                 </div>
-                <c:if test="${signedInUser eq post.author}">
+                <c:if test="${signedInUser eq post.author || signedInUser eq 'admin'}">
                 <div class="card-footer">
                     <c:url var="postModifyPage" value="/post/modify" >
                         <c:param name="id" value="${post.id}" />
