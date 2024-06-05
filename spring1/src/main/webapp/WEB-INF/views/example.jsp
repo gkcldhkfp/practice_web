@@ -27,7 +27,7 @@
     
     <main>
         <section>
-            <h2>GET 방식 요청</h2>
+            <h2>GET 방식 요청</h2>  
             <c:url var="ex1" value="/ex1" />
             <form method="get" action="${ex1}">
                 <input type="text" name="username" placeholder="이름" />
