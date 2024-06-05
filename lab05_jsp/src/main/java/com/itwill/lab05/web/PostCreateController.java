@@ -49,7 +49,6 @@ public class PostCreateController extends HttpServlet{
 		resp.sendRedirect(url);
 		// PRG(Post-Redirect-Get) 
 		
-		log.debug("ip={}",req.getRemoteAddr());
 	}
 
 }
