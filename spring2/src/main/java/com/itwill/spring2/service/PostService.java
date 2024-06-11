@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.spring2.dto.PostListDto;
 import com.itwill.spring2.repository.Post;
 import com.itwill.spring2.repository.PostDao;
 
@@ -26,9 +27,22 @@ public class PostService {
 //		this.postDao = postDao;
 //	}
 	
-	public List<Post> read() {
+	public List<PostListDto> read() {
 		log.debug("read()");
 		
-		return postDao.selectOrderByIdDesc();
+		List<Post> list = postDao.selectOrderByIdDesc();
+		
+//		List<PostListDto> result = new ArrayList<>();
+//		for (Post p : list) {
+//			result.add(PostListDto.fromEntity(p));
+//		}
+		
+		return list.stream().map(PostListDto::fromEntity) // map((x) -> PostListDto.fromEntity(x))
+				.toList();
 	}
+	
+	public Post readById(int id) {
+		return postDao.selectById(id);
+	}
+	
 }
