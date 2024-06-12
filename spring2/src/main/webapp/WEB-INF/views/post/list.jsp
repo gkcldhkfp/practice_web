@@ -14,42 +14,64 @@
 <body>
     <div class="container-fluid">
         <c:set var="pageTitle" value="POST LIST" />
-        <%@ include file="../fragments/header.jspf" %>
-    </div>
+        <%@ include file="../fragments/header.jspf"%>
 
-    <main class="container-fluid">
-        <div class="mt-2 card">
-            <div class="card-header">
-                <h2>포스트 목록</h2>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>작성시간</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="p" items="${posts}" >
+
+        <main>
+            <div class="mt-2 card">
+                <div class="card-header">
+                    <c:url var="postSearchPage" value="/post/search" />
+                    <form method="get" action="${postSearchPage}">
+                        <div class="row" >
+                            <div class="col-3">
+                                <select class="form-control" name="category">
+                                    <option value="t">제목</option>
+                                    <option value="c">내용</option>
+                                    <option value="tc">제목+내용</option>
+                                    <option value="a">작성자</option>
+                                </select>
+                            </div>
+                            <div class="col-7">
+                                <input class="form-control" type="text" name="keyword" placeholder="검색어" required/>
+                            </div>
+                            <div class="col-2">
+                                <input type="submit" class="btn btn-outline-secondary form-control" value="검색">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
                             <tr>
-                                <td>${p.id}</td>
-                                    <c:url var="postDetailsPage" value="/post/details">
-                                        <c:param name="id" value="${p.id}"></c:param>
-                                    </c:url>
-                                <td> <a href="${postDetailsPage}">${p.title}</a> </td>
-                                <td>${p.author}</td>
-                                <td>${p.modifiedTime}</td>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>작성시간</th>
                             </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="p" items="${posts}">
+                                <tr>
+                                    <td>${p.id}</td>
+                                    <c:url var="postDetailsPage"
+                                        value="/post/details">
+                                        <c:param name="id"
+                                            value="${p.id}"></c:param>
+                                    </c:url>
+                                    <td><a
+                                        href="${postDetailsPage}">${p.title}</a>
+                                    </td>
+                                    <td>${p.author}</td>
+                                    <td>${p.modifiedTime}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-
-    </main>
+        </main>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
