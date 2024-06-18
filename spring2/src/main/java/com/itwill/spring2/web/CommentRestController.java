@@ -93,4 +93,13 @@ public class CommentRestController {
 		return ResponseEntity.ok(result);
 	}
 	
+	@DeleteMapping("/all/{id}")
+	public ResponseEntity<Integer> deleteByPostId (@PathVariable int id) {
+		log.debug("deleteComment(id={})",id);
+		
+		int result = commentService.deleteById(id);
+		
+		return ResponseEntity.ok(result);
+	}
+	
 }

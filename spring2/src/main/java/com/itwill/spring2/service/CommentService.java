@@ -1,6 +1,5 @@
 package com.itwill.spring2.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -71,6 +70,15 @@ public class CommentService {
 		
 		// 리포지토리 컴포넌트의 메서드를 호출해서 comments에서 댓글 1개를 삭제.
 		int result = commentDao.deleteById(id);
+		
+		return result;
+	}
+	
+	public int deleteByPostId(Integer id) {
+		log.debug("deleteByPostId(id={})",id);
+		
+		// 리포지토리 컴포넌트의 메서드를 호출해서 comments에서 댓글 1개를 삭제.
+		int result = commentDao.deleteByPostId(id);
 		
 		return result;
 	}

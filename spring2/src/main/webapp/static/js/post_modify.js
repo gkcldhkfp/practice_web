@@ -16,8 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = confirm('정말 삭제할까요?');
         
         if(result){ // 사용자가 [확인]을 선택했을 때
+            
+             const uri = `../api/comment/all/${id}`;
+            
+            axios.delete(uri).then((response) => {
+                   conole.log(response);
+            })
+            .catch((error) => {console.log(error)});
+        
             // GET 방식의 delete 요청을 서버로 보냄.
             location.href = `delete?id=${inputId.value}`;
+            
+            
+            
         }
     });
     
@@ -35,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modifyForm.action = 'update'; // 요청 주소
             modifyForm.method = 'POST'; // 요청 방식
             modifyForm.submit(); // 폼 양식 데이터 제출(서버로 요청 보냄).
+            
         }   
              
     });
