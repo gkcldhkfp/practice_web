@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class PostSearchDto {
-	String category;
-	String keyword;
+	private String category;
+	private String keyword;
 }

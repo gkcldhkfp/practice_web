@@ -7,9 +7,9 @@ import lombok.Data;
 // 업데이트 요청의 요청 파라미터들을 저장하기 위한 DTO
 @Data
 public class PostUpdateDto {
-	Integer id;
-	String title;
-	String content;
+	private Integer id;
+	private String title;
+	private String content;
 	
 	public Post toEntity() {
 		return Post.builder().id(id).title(title).content(content).build();
