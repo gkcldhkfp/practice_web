@@ -28,7 +28,7 @@ public class EmployeeService {
 	public Employee readById(int id) {
 		log.info("readById");
 		
-		return empRepo.findById(id).get();
+		return empRepo.findById(id).orElseThrow();
 	}
 
 	public List<Employee> readByDeptId(int id) {

@@ -24,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 public class DepartmentController {
 	
 	private final DepartmentService deptSvc;
-	private final EmployeeService empSvc;
 	
 	@GetMapping("/list")
 	public void list(Model model) {
@@ -40,9 +39,7 @@ public class DepartmentController {
 		log.info("dept details");
 		
 		Department dept = deptSvc.readById(id);
-		List<Employee> emp = empSvc.readByDeptId(id);
 		
-		model.addAttribute("employees", emp);
 		model.addAttribute("department", dept);
 		
 		return "department/details";

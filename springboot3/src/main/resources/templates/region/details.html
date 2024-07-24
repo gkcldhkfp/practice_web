@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Spring Boot 3</title>
+	</head>
+	<body>
+		<div th:replace="~{/layout/fragments :: pageHeader('지역 상세 페이지')}"></div>
+        
+        <table th:object="${region}">
+            <tr>
+                <th>대륙번호</th>
+                <td th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <th>대륙이름</th>
+                <td th:text="*{regionName}"></td>
+            </tr>
+        </table>
+        
+         <h3>대륙 국가</h3>
+        <table>
+            <tr>
+                    <th>국가번호</th>
+                    <th>이름</th>
+                    <th>지역</th>
+                </tr>
+                
+                <tr th:each="country : ${region.countries}" th:object="${country}">
+                    <td>
+                        <a th:href="@{/country/details/{id}(id=*{id})}" th:text="*{id}"></a>
+                    </td>
+                    
+                    <td>
+                        <a th:href="@{/country/details/{id}(id=*{id})}" th:text="*{countryName}"></a>
+                    </td>
+                    
+                    <td>
+                        <a th:href="@{/region/details/{id}(id=*{region.id})}" th:text="*{region.regionName}"></a>
+                    </td>
+                </tr>
+        </table> 
+        
+	</body>
+</html>

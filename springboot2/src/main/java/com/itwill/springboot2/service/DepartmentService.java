@@ -26,7 +26,7 @@ public class DepartmentService {
 	public Department readById(int id) {
 		log.info("dept readById()");
 		
-		return depRepo.findById(id).get();
+		return depRepo.findById(id).orElseThrow();
 	}
 	
 }

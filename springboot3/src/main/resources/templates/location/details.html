@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Spring Boot 3</title>
+	</head>
+	<body>
+		<div th:replace="~{/layout/fragments :: pageHeader('위치 상세 페이지')}"></div>
+        
+         <table th:object="${location}">
+            <tr>
+                <th>위치아이디</th>
+                <td th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <th>도로주소</th>
+                <td th:text="*{streetAddress}"></td>
+            </tr>
+            <tr>
+                <th>우편번호</th>
+                <td th:text="*{postalCode}"></td>
+            </tr>
+            <tr>
+                <th>도시명</th>
+                <td th:text="*{city}"></td>
+            </tr>
+            <tr>
+                <th>주/도</th>
+                <td th:text="*{stateProvince}"></td>
+            </tr>
+            <tr>
+                <th>국가</th>
+                <td th:text="*{country.countryName}"></td>
+            </tr>
+            
+        </table>
+        
+         <h3>위치 부서</h3>
+        <table>
+            <tr>
+                <th>부서번호</th>
+                <th>부서이름</th>
+                <th>매니저</th>
+                <th>위치</th>
+            </tr>
+            <tr th:each="dept : ${location.departments}" th:object="${dept}">
+              <td>
+                     <a th:href="@{/department/details/{id}(id=*{id})}" th:text="*{id}"></a>
+               </td>
+                    
+               <td>
+                   <a th:href="@{/department/details/{id}(id=*{id})}" th:text="*{departmentName}"></a>
+               </td>
+               
+               <td>
+                   <th:block th:if="*{manager != null}">
+                       <a th:href="@{/employee/details/{id}(id=*{manager.id})}" th:text="|*{manager.firstName} *{manager.lastName}|"></a>
+                  </th:block>
+               </td>
+                    
+               <td>
+                       <a th:href="@{/location/details/{id}(id=*{location.id})}" th:text="*{location.city}"></a>
+              </td>
+            </tr>
+        </table> 
+        
+	</body>
+</html>
