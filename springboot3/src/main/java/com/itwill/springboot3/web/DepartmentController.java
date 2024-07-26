@@ -1,17 +1,16 @@
 package com.itwill.springboot3.web;
 
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.springboot3.domain.Department;
+import com.itwill.springboot3.dto.DepartmentDetailsDto;
 import com.itwill.springboot3.service.DepartmentService;
 
 import lombok.RequiredArgsConstructor;
@@ -35,12 +34,13 @@ public class DepartmentController {
 		
 	}
 	
-	@GetMapping("/details/{id}")
-	public String details(Model model, @PathVariable Integer id) {
+	@GetMapping("/details")
+	public void details(@RequestParam(name = "dname") String departmentName, Model model) {
+		log.info("details(departmentName={})", departmentName);
 		
-		model.addAttribute("department", deptSvc.read(id));
+		DepartmentDetailsDto dto = deptSvc.read(departmentName);
+		model.addAttribute("department", dto);
 		
-		return "department/details";
 	}
 	
 	

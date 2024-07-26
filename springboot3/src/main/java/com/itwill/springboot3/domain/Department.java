@@ -11,11 +11,15 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+@AllArgsConstructor(access = AccessLevel.PRIVATE) @Builder
 @Getter @NoArgsConstructor @EqualsAndHashCode @ToString
 @Entity @Table(name = "DEPARTMENTS")
 public class Department {
@@ -35,7 +39,4 @@ public class Department {
 	@JoinColumn(name = "LOCATION_ID")
 	private Location location;
 	
-	@ToString.Exclude
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-	private List<Employee> employees;
 }
