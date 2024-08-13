@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 	<head>
 		<th:block th:fragment="documentHeader">
             <meta charset="utf-8">
@@ -36,9 +37,23 @@
                             <li class="nav-item">
                                 <a class="nav-link" th:href="@{/post/create}">새 포스트</a>
                             </li>
+                            <th:block sec:authorize="isAnonymous()"> <!-- 로그인 안 된 상태 -->
                             <li class="nav-item">
-                                <a class="nav-link disabled">TODO</a>
+                                <a class="nav-link" th:href="@{/member/signin}">로그인</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
+                            </li>
+                            </th:block>
+                            <th:block sec:authorize="isAuthenticated()"> <!-- 로그인 된 상태 -->
+                            <li class="nav-item">
+                                <!-- spring security에서 로그아웃 기능이 구현된 요청 주소 -->
+                                <a class="nav-link" th:href="@{/logout}">
+                                    <span id="authUser" class="text-secondary" sec:authentication="name"></span>
+                                    <span class="text-primary mx-1">로그아웃</span>
+                                </a>
+                            </li>
+                            </th:block>
                         </ul>
                     </div>
                 </div>
@@ -47,24 +62,24 @@
         
         <th:block th:fragment="pagination">
             <nav>
-                <ul class="pagination justify-content-center"
-                    th:with="uriBuilder=${T(com.itwill.springboot5.web.ServletUriComponentsBuilderWrapper).fromCurrentRequest()}">
+                <ul class="pagination justify-content-center">
                     <li class="page-item"
                         th:classappend="${!page.hasPrevious} ? 'disabled'">
                         <a class="page-link" 
-                        th:href="@{${uriBuilder.replaceQueryParam('p', page.number - 1).toUriString()}}">이전</a>
+                        th:href="@{${baseUrl}(p=${page.number - 1}, category=${param.category}, keyword=${param.keyword})}">이전</a>
                     </li>
                     <li class="page-item"
-                        th:each="pageNo : ${#numbers.sequence(0, page.totalPages -1)}"
+                        th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1, 1)}"
                         th:if="${pageNo >= page.number - 5 && pageNo < page.number + 5}"
                         th:classappend="${pageNo == page.number} ? 'active'">
                         <a class="page-link" 
-                            th:href="@{${uriBuilder.replaceQueryParam('p', pageNo).toUriString()}}"
+                            th:href="@{${baseUrl}(p=${pageNo}, category=${param.category}, keyword=${param.keyword})}"
                             th:text="${pageNo + 1}"></a>
                     </li>
                     <li class="page-item" 
                         th:classappend="${!page.hasNext} ? 'disabled'">
-                        <a class="page-link" th:href="@{${uriBuilder.replaceQueryParam('p', page.number + 1).toUriString()}}">다음</a>
+                        <a class="page-link" 
+                        th:href="@{${baseUrl}(p=${page.number + 1}, category=${param.category}, keyword=${param.keyword})}">다음</a>
                     </li>
                 </ul>
             </nav>
